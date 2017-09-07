@@ -41,6 +41,9 @@ public class OperatorsExample {
         System.out.println("y << 2 = " + (y << 2));
         System.out.println("y >> 2 = " + (y >> 2));
         System.out.println("y >>> 2 = " + (y >>> 2));
+        System.out.println("y << 2 = " + Integer.toBinaryString(y << 2));
+        System.out.println("y >> 2 = " + Integer.toBinaryString(y >> 2));
+        System.out.println("y >>> 2 = " + Integer.toBinaryString(y >>> 2));
 
         System.out.println("\nLogical operators:");
         boolean b1 = false, b2 = true;
