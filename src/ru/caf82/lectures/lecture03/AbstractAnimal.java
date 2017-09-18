@@ -4,7 +4,7 @@ package ru.caf82.lectures.lecture03;
  * Created by ilysko on 16.09.17.
  */
 public abstract class AbstractAnimal {
-    final int legsAmount;
+    int legsAmount;
     final String animalName;
 
     public abstract void move();

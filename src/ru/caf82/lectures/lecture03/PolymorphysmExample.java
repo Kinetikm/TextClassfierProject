@@ -24,11 +24,19 @@ class Kitty implements Washable {
     public String toString() {
         return "Kitty";
     }
+
+    void f() {
+        System.out.println("ololo");
+    }
 }
 
 class Dishware implements Washable {
     @Override
     public String toString() {
         return "Dishware";
+    }
+
+    void f() {
+        System.out.println("ololo2");
     }
 }

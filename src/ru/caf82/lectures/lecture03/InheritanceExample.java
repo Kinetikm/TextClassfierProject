@@ -13,7 +13,7 @@ public class InheritanceExample {
     }
 
     public static void main(String[] args) {
-        AbstractAnimal tiger = new Tiger();
+        Tiger tiger = new Tiger();
         tiger.move();
         tiger.sayYourName();
         System.out.println(tiger.legsAmount);
@@ -33,6 +33,12 @@ class Tiger extends AbstractAnimal {
 
     public void jump() {
         System.out.println("jump");
+    }
+
+    @Override
+    public void sayYourName() {
+        System.out.println("My realisation");
+        super.sayYourName();
     }
 }
 

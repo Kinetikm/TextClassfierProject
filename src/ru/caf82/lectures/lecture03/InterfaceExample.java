@@ -13,5 +13,4 @@ public interface InterfaceExample {
     // можно не писать static final, это "по умолчанию"
     static final int amount1 = 3;
     int amount2 = 4;
-
 }
