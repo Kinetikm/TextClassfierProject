@@ -28,7 +28,8 @@ public class OperatorsExample {
         System.out.println("\nRelational operators:");
         double p = 5.5d, r = 2.7500000000000001d;
         System.out.println("p / 2 == r = " + (p / 2 == r));
-
+for(int i=0;i<6;i++)
+    
         System.out.println("\nBitwise operators:");
         // TODO разобраться с битовыми представлениями!
         byte t = 0b1110, q = 0b0111;
