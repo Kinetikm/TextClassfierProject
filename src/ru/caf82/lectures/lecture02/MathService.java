@@ -30,13 +30,16 @@ public class MathService {
     }
     public static double[][] MatrixNormalize(double [][] x){
         double SS=0;
+        double DD=0;
         int j=0;
         for(int i=0;i<x.length;i++){
             for(j=0;j<x[i].length;j++)SS=SS+x[i][j];
             SS=SS/x[i].length;
-            for(j=0;j<x[i].length;j++)x[i][j]=Math.sqrt((x[i][j]-SS)*(x[i][j]-SS)/(x[i].length-1));
-            
+            System.out.println("Medium "+SS);
+            for(j=0;j<x[i].length;j++)DD=DD+(x[i][j]-SS)*(x[i][j]-SS)/(x[i].length-1);
+            for(j=0;j<x[i].length;j++)x[i][j]=(x[i][j]-SS)/Math.sqrt(DD);
             SS=0;
+            DD=0;
         }
         return x;
     }
@@ -62,10 +65,7 @@ public class MathService {
         System.out.println("After sigmoid: "+ZZ);
         ZZ=sigmoid(xx,yy);
         System.out.println("After sigmoid for Matrix: "+ZZ);
-        double [][] VV=new double [3][3];
-        for(int x=0;x<3;x++){
-            for(int y=0;y<3;y++)VV[x][y]=Rand.nextDouble();
-        }
+        double [][] VV={{1d,2d,4d},{4d,5d,6d},{7d,8d,9d}};       
         System.out.println(Arrays.deepToString(VV));
         double BB[][]=MatrixNormalize(VV);
         System.out.println();
