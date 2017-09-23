@@ -2,6 +2,7 @@ package ru.caf82.result.services;
 
 import ru.caf82.result.exceptions.InconveninentShapeException;
 
+import java.lang.reflect.Array;
 import java.util.Arrays;
 
 /**
@@ -32,6 +33,7 @@ public class MathService {
         double meanValue;
         double stdValue = 0;
         for(int i = 0; i < X.length; i++) {
+            stdValue = 0;
             meanValue = Arrays.stream(X[i]).sum() / X[i].length;
             for(double value : X[i]) {
                 stdValue += (value - meanValue) * (value - meanValue);
@@ -44,6 +46,11 @@ public class MathService {
             }
         }
         return X;
+    }
+
+    public static void main(String[] args) {
+        double[][] tmp = matrixNormalize(new double[][]{{1, 2, 3}, {4, 5, 6}});
+        System.out.println(Arrays.toString(matrixNormalize(new double[][]{{4}, {5}, {6}})[0]));
     }
 
     public static double[] vectorNormalize(double[] X) {
