@@ -1,5 +1,8 @@
 package ru.caf82.lectures.lecture02;
 
+import java.lang.ArithmeticException;
+import java.lang.*;
+
 public class StringProcessing {
 
     public static void main(String[] args) {

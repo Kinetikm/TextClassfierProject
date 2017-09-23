@@ -1,6 +1,8 @@
 package ru.caf82.lectures.lecture02;
 
 public class ConstructorExample {
+    static final int a = 8;
+    static final StringBuilder stringBuilder = new StringBuilder("ololo");
 
     public class Rectangular {
 

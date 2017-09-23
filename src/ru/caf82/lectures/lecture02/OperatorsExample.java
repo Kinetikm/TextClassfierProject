@@ -1,7 +1,5 @@
 package ru.caf82.lectures.lecture02;
 
-import com.sun.org.apache.xpath.internal.SourceTree;
-
 /**
  * Created by ilysko on 24.08.17.
  */
@@ -26,7 +24,7 @@ public class OperatorsExample {
         System.out.println("!e = " + !e);
 
         System.out.println("\nRelational operators:");
-        double p = 5.5d, r = 2.7500000000000001d;
+        double p = 5.5d, r = 2.75000000000000000001d;
         System.out.println("p / 2 == r = " + (p / 2 == r));
 
         System.out.println("\nBitwise operators:");
@@ -41,6 +39,9 @@ public class OperatorsExample {
         System.out.println("y << 2 = " + (y << 2));
         System.out.println("y >> 2 = " + (y >> 2));
         System.out.println("y >>> 2 = " + (y >>> 2));
+        System.out.println("y << 2 = " + Integer.toBinaryString(y << 2));
+        System.out.println("y >> 2 = " + Integer.toBinaryString(y >> 2));
+        System.out.println("y >>> 2 = " + Integer.toBinaryString(y >>> 2));
 
         System.out.println("\nLogical operators:");
         boolean b1 = false, b2 = true;
