@@ -3,12 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package MachineLearning.Preprocessing;
+package Other;
 
 /**
  *
  * @author User
  */
-public interface SequenceProcessor {
+public interface DAO {
     
 }
