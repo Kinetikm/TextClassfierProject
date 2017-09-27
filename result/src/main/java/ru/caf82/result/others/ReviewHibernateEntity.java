@@ -3,12 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package main.java.ru.caf82.result.machinelearning.preprocessing;
+package main.java.ru.caf82.result.others;
 
 /**
  *
  * @author 1
  */
-public interface WordProcessor {
+public class ReviewHibernateEntity {
     
 }

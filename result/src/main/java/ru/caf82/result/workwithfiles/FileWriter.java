@@ -1,7 +1,14 @@
-package ru.caf82.result.workwithfiles;
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package main.java.ru.caf82.result.workwithfiles;
 
 /**
- * Created by ilysko on 03.08.17.
+ *
+ * @author 1
  */
-public class FileWriter implements FileWorker {
+public class FileWriter implements FileWorker{
+    
 }

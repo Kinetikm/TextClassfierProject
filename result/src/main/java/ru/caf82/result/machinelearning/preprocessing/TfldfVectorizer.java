@@ -9,6 +9,6 @@ package main.java.ru.caf82.result.machinelearning.preprocessing;
  *
  * @author 1
  */
-public interface WordProcessor {
+public class TfldfVectorizer implements SequenceProcessor, Transformer {
     
 }
