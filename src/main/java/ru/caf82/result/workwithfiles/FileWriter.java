@@ -1,4 +1,4 @@
-package ru.caf82.result.workwithfiles;
+package main.java.ru.caf82.result.workwithfiles;
 
 /**
  * Created by ilysko on 03.08.17.
