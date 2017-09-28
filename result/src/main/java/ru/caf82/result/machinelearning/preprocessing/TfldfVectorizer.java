@@ -9,6 +9,6 @@ package MachineLearning.Preprocessing;
  *
  * @author User
  */
-public interface SequenceProcessor {
+public class TfldfVectorizer implements Transformer {
     
 }
