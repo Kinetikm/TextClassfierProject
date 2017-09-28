@@ -3,10 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package main.java.ru.caf82.result.others;
+package ru.caf82.result.others;
 
-import main.java.ru.caf82.result.exceptions.EmptyArrayException;
-import main.java.ru.caf82.result.exceptions.InconveninentShapeException;
+import ru.caf82.result.exceptions.EmptyArrayException;
+import ru.caf82.result.exceptions.InconveninentShapeException;
 
 /**
  *

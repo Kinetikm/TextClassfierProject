@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package main.java.ru.caf82.result.machinelearning.models;
+package ru.caf82.result.machinelearning.models;
 
 /**
  *
