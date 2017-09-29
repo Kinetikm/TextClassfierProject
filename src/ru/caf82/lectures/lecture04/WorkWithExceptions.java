@@ -33,4 +33,8 @@ public class WorkWithExceptions {
             throw new MyExceptionClassExample(e);
         }
     }
+    public static void main(String[] args) throws MyExceptionClassExample{
+        WorkWithExceptions w= new WorkWithExceptions();
+        w.createNewExceptionWhileWorkingWithOld();
+    }
 }
