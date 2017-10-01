@@ -1,7 +1,14 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package ru.caf82.result.workwithfiles;
 
 /**
- * Created by ilysko on 03.08.17.
+ *
+ * @author alex
  */
 public class FileReader implements FileWorker {
+    
 }

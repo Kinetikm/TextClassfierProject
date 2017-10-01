@@ -3,12 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ru.caf82.result.workwithfiles;
+package ru.caf82.others;
 
 /**
  *
  * @author alex
  */
-public class FileWriter implements FileWorker {
+public class SwingModel {
     
 }
