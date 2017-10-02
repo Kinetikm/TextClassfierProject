@@ -59,7 +59,12 @@ private static List<String> defaultStopWordsList = new ArrayList<String>(
 
     @Override
     public List<Map<String, Integer>> fitAndTransform(List<String> listOfTexts) {
-       return null;
+        List<Map<String, Integer>> listOfMaps = new ArrayList<>();
+        for (String text : listOfTexts) {
+            List<String> list = preprocess(text);
+            listOfMaps.add(countWordsAndEditMatrix(list));
+        }
+        return listOfMaps;
     }
 
     @Override
@@ -72,10 +77,13 @@ private static List<String> defaultStopWordsList = new ArrayList<String>(
 
     @Override
     public List<String> preprocess(String text) {
-        
+        PorterStemmer stemmer = new PorterStemmer();
       text = text.toLowerCase().replaceAll("[^а-я -]","").replaceAll(" +-"," ").replaceAll("- +"," ");
    
         String[] array = text.split(" +");
+        for (int i = 0; i<array.length; i++) {
+            array[i] = stemmer.stem(array[i]);
+        }
        List<String> list = new ArrayList<String>(Arrays.asList(array));
        list.removeAll(defaultStopWordsList);
        return list;
@@ -83,7 +91,12 @@ private static List<String> defaultStopWordsList = new ArrayList<String>(
 
     @Override
     public List<Map<String, Integer>> transform(List<String> listOfTexts) {
-       return null;
+        List<Map<String, Integer>> listOfMaps = new ArrayList<>();
+        for (String text : listOfTexts) {
+            List<String> list = preprocess(text);
+            listOfMaps.add(countWords(list));
+        }
+        return listOfMaps;
     }
     
      public CountVectorizer(float minDf, float maxDf, String[] stopWords, boolean parralize) {
@@ -118,7 +131,7 @@ private static List<String> defaultStopWordsList = new ArrayList<String>(
 
    private Map<String, Integer> countWords(List<String> words) {
        Map<String, Integer> map = new HashMap<String, Integer>();
-       int value = 0;
+       int value;
        for (String word : words) {
            if (map.containsKey(word)) {
                value = map.get(word);
@@ -145,9 +158,6 @@ private static List<String> defaultStopWordsList = new ArrayList<String>(
     }
     return map;
    }
-   //Проверка preprocess
-   public static void main (String[] args) {
-       System.out.println("ololo");
-   }
+
 
 }
