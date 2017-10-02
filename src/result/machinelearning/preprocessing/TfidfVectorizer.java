@@ -1,4 +1,4 @@
-package ru.caf82.result.machinelearning.preprocessing;
+package result.machinelearning.preprocessing;
 
 /**
  * Created by ilysko on 03.08.17.
