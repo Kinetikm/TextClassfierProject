@@ -73,22 +73,17 @@ private static List<String> defaultStopWordsList = new ArrayList<String>(
     @Override
     public List<String> preprocess(String text) {
         
-        text.replaceAll(" - ?", "-");
-        text.replaceAll("[^а-я -]","");
-        text.replaceAll("- "," ");
-        text.replaceAll(" *"," ");
-        
-        String[] array = text.toLowerCase().split(" ");
-       List<String> list = Arrays.asList(array);
+      text = text.toLowerCase().replaceAll("[^а-я -]","").replaceAll(" +-"," ").replaceAll("- +"," ");
+   
+        String[] array = text.split(" +");
+       List<String> list = new ArrayList<String>(Arrays.asList(array));
        list.removeAll(defaultStopWordsList);
        return list;
     }
 
     @Override
     public List<Map<String, Integer>> transform(List<String> listOfTexts) {
-     
-            
-        
+       
     }
     
      public CountVectorizer(float minDf, float maxDf, String[] stopWords, boolean parralize) {
@@ -104,13 +99,13 @@ private static List<String> defaultStopWordsList = new ArrayList<String>(
    }
    public CountVectorizer(String[] stopWords) {
        this.stopWords = stopWords;
-       minDf = 0;
-       maxDf = Integer.MAX_VALUE;
+       minDf = 1;
+       maxDf = 1;
        parralize = false;
    }
    public CountVectorizer() {
-       minDf = 0;
-       maxDf = Integer.MAX_VALUE;
+       minDf = 1;
+       maxDf = 1;
        parralize = false;
    }
    
@@ -149,6 +144,10 @@ private static List<String> defaultStopWordsList = new ArrayList<String>(
         matrix.put(pair.getKey(), valueFromMatrix + pair.getValue());
     }
     return map;
+   }
+   //Проверка preprocess
+   public static void main (String[] args) {
+      
    }
 
 }
