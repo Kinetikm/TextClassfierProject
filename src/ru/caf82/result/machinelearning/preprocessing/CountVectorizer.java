@@ -64,7 +64,10 @@ private static List<String> defaultStopWordsList = new ArrayList<String>(
 
     @Override
     public void fit(List<String> listOfTexts) {
-        
+          for (String text : listOfTexts) {
+            List<String> list = preprocess(text);
+            countWordsAndEditMatrix(list);
+        }
     }
 
     @Override
@@ -83,6 +86,8 @@ private static List<String> defaultStopWordsList = new ArrayList<String>(
 
     @Override
     public List<Map<String, Integer>> transform(List<String> listOfTexts) {
+     
+            
         
     }
     
@@ -116,7 +121,7 @@ private static List<String> defaultStopWordsList = new ArrayList<String>(
        return maxDf;
    }
 
-   private Map<String, Integer> countWords(String[] words) {
+   private Map<String, Integer> countWords(List<String> words) {
        Map<String, Integer> map = new HashMap<String, Integer>();
        int value = 0;
        for (String word : words) {
@@ -132,6 +137,18 @@ private static List<String> defaultStopWordsList = new ArrayList<String>(
        }
        return map;
    }
-   private Map<String, Integer> countWordsAndEditMatrix(String[] words) {}
+   private Map<String, Integer> countWordsAndEditMatrix(List<String> words) {
+    Map<String, Integer> map = countWords(words);
+    int valueFromMatrix = 0;
+    for (Map.Entry<String,Integer> pair : map.entrySet()) {
+        
+        if (matrix.containsKey(pair.getKey())) {
+            valueFromMatrix = matrix.get(pair.getKey());
+            
+        }
+        matrix.put(pair.getKey(), valueFromMatrix + pair.getValue());
+    }
+    return map;
+   }
 
 }
