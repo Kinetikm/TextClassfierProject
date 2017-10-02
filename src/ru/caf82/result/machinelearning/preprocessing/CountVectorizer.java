@@ -69,6 +69,16 @@ private static List<String> defaultStopWordsList = new ArrayList<String>(
 
     @Override
     public List<String> preprocess(String text) {
+        
+        text.replaceAll(" - ?", "-");
+        text.replaceAll("[^а-я -]","");
+        text.replaceAll("- "," ");
+        text.replaceAll(" *"," ");
+        
+        String[] array = text.toLowerCase().split(" ");
+       List<String> list = Arrays.asList(array);
+       list.removeAll(defaultStopWordsList);
+       return list;
     }
 
     @Override
@@ -98,5 +108,30 @@ private static List<String> defaultStopWordsList = new ArrayList<String>(
        maxDf = Integer.MAX_VALUE;
        parralize = false;
    }
+   
+   public float getMinDf() {
+       return minDf;
+   }
+   public float getMaxDf() {
+       return maxDf;
+   }
+
+   private Map<String, Integer> countWords(String[] words) {
+       Map<String, Integer> map = new HashMap<String, Integer>();
+       int value = 0;
+       for (String word : words) {
+           if (map.containsKey(word)) {
+               value = map.get(word);
+                value++;             
+           }
+           
+           else {
+               value = 1;
+           }
+           map.put(word, value);
+       }
+       return map;
+   }
+   private Map<String, Integer> countWordsAndEditMatrix(String[] words) {}
 
 }
