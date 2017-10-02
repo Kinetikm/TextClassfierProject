@@ -59,7 +59,7 @@ private static List<String> defaultStopWordsList = new ArrayList<String>(
 
     @Override
     public List<Map<String, Integer>> fitAndTransform(List<String> listOfTexts) {
-       
+       return null;
     }
 
     @Override
@@ -83,7 +83,7 @@ private static List<String> defaultStopWordsList = new ArrayList<String>(
 
     @Override
     public List<Map<String, Integer>> transform(List<String> listOfTexts) {
-       
+       return null;
     }
     
      public CountVectorizer(float minDf, float maxDf, String[] stopWords, boolean parralize) {
@@ -147,7 +147,7 @@ private static List<String> defaultStopWordsList = new ArrayList<String>(
    }
    //Проверка preprocess
    public static void main (String[] args) {
-      
+       System.out.println("ololo");
    }
 
 }
