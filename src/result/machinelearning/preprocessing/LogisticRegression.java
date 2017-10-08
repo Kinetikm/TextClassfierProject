@@ -16,21 +16,26 @@ import Other.MathService;
  * @author User
  */
 public class LogisticRegression implements MlModel, Serializable {
-private float alpha;
-private float betta;
-private boolean parralize;
-private float learnRate;
-private Random initializer = new Random();
+//private float alpha;
+//private float betta;
+//private boolean parralize;
+//private float learnRate;
+//private Random initializer = new Random();
 private int ITERATES=1000;
 private double rate=0.001;
 
 private double[] weights;
-private boolean fitted = false;
+//private boolean fitted = false;
 
   // public LogisticRegression2(float alpha, float betta, int maxIter, float learnRate, boolean parralize) {}
    public static double sigmoid(double z){
        return 1/(1+Math.exp(-z));
-   }   
+   }
+    /**
+     * Инициализация массива векторв - нужно добавить первый столбец с одними единицами
+     * @param X - координаты векторов
+     * @return 
+     */
    static public double[][] init(double[][]X){
        int i,j;
        double [][]Y=new double[X.length][X.length+1];
@@ -40,20 +45,26 @@ private boolean fitted = false;
        }
        return Y;
    };
+   /**
+    * Тренировка весов
+    * С каждой итерацией вероятность будет точнее и точнее
+    * @param X полученные вектора из CountVectorizer
+    * @param y возможные варианты (1 или 0)
+    * @throws InconveninentShapeException
+    * @throws EmptyArrayException 
+    */
    public void train(double[][] X, int[] y) throws InconveninentShapeException, EmptyArrayException {
-       double zz=0;
        double pr=0;
-       double []sumdelta;
+       double []sumdelta; //сумма дельт в каждом столбце
        int i,j;
-       weights=new double[X.length+1];
+       weights=new double[X[1].length+1];
        X=init(X);
-       double delta[]=null;
+       double delta[];
        sumdelta=new double[X.length];
        for(int u=0;u<ITERATES;u++){
            delta=new double[X.length];
-           for(i=0;i<X.length;i++){
-               zz=MathService.doProduct(X[i], weights);
-               pr=sigmoid(zz);
+           for(i=0;i<X.length;i++){             
+               pr=sigmoid(MathService.doProduct(X[i], weights));
                for(j=0;j<X[i].length;j++)delta[i]=(pr-y[i])*X[i][j];
                for(i=0;i<X.length;i++) sumdelta[i]=sumdelta[i]+delta[i];
        }
@@ -61,11 +72,22 @@ private boolean fitted = false;
            for(i=0;i<X.length;i++)weights[i]=weights[i]-rate*sumdelta[i];
        }
    }
+   /**
+    * Вспомогательный класс, который помогает вычислить сумму произведений координат вектора их весов
+    * @param X вектор
+    * @return
+    */
    public double ss(double[] X){
       double result=0;
        for(int i=0;i<X.length;i++)result=result+X[i]*weights[i];
        return result;
    }
+   /**
+    * 
+    * @param X
+    * @return
+    * @throws InconveninentShapeException 
+    */
    public double predict(double[] X) throws InconveninentShapeException {
        double ver=0;
        double v=0;
