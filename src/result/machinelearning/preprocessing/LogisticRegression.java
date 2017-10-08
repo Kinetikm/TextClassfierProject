@@ -7,9 +7,13 @@ package result.machinelearning.preprocessing;
 
 import Exeptions.EmptyArrayException;
 import Exeptions.InconveninentShapeException;
+import Exeptions.ModelNotFittedException;
 import java.io.Serializable;
 import java.util.Random;
 import Other.MathService;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -50,10 +54,12 @@ private double[] weights;
     * С каждой итерацией вероятность будет точнее и точнее
     * @param X полученные вектора из CountVectorizer
     * @param y возможные варианты (1 или 0)
+     * @return 
     * @throws InconveninentShapeException
     * @throws EmptyArrayException 
     */
-   public void train(double[][] X, int[] y) throws InconveninentShapeException, EmptyArrayException {
+@Override
+   public MlModel train(double[][] X, int[] y) throws InconveninentShapeException {
        double pr=0;
        double []sumdelta; //сумма дельт в каждом столбце
        int i,j;
@@ -64,13 +70,38 @@ private double[] weights;
        for(int u=0;u<ITERATES;u++){
            delta=new double[X.length];
            for(i=0;i<X.length;i++){             
-               pr=sigmoid(MathService.doProduct(X[i], weights));
+               try {
+                   pr=sigmoid(MathService.doProduct(X[i], weights));
+               } catch (EmptyArrayException ex) {
+                   Logger.getLogger(LogisticRegression.class.getName()).log(Level.SEVERE, null, ex);
+               }
                for(j=0;j<X[i].length;j++)delta[i]=(pr-y[i])*X[i][j];
                for(i=0;i<X.length;i++) sumdelta[i]=sumdelta[i]+delta[i];
        }
            for(i=0;i<X.length;i++) sumdelta[i]=sumdelta[i]/X.length;
            for(i=0;i<X.length;i++)weights[i]=weights[i]-rate*sumdelta[i];
        }
+       return new MlModel() {
+           @Override
+           public MlModel train(double[][] X, int[] y) throws InconveninentShapeException {
+               throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+           }
+
+           @Override
+           public int[] predict(double[] X) throws ModelNotFittedException, InconveninentShapeException {
+               throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+           }
+
+           @Override
+           public double[] predictProba(double[] X) throws ModelNotFittedException, InconveninentShapeException {
+               throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+           }
+
+           @Override
+           public void saveToFile(String filename) throws IOException {
+               throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+           }
+       };
    }
    /**
     * Вспомогательный класс, который помогает вычислить сумму произведений координат вектора их весов
@@ -86,16 +117,31 @@ private double[] weights;
     * 
     * @param X
     * @return
+     * @throws Exeptions.ModelNotFittedException
     * @throws InconveninentShapeException 
     */
-   public double predict(double[] X) throws InconveninentShapeException {
+@Override
+   public int[] predict(double[] X) throws ModelNotFittedException, InconveninentShapeException {
        double ver=0;
-       double v=0;
+       int []probability=new int[X.length];
        ver =Math.exp(ss(X))/(1+Math.exp(ss(X)));
-       if(ver>0.5)System.out.println("It is a dog");else if(ver<0.4)System.out.println("It is a cat");
+       if(ver>0.5){
+           System.out.println("It is a dog");
+           probability[0]=1;
+       }else if(ver<0.4)System.out.println("It is a cat");
        else System.out.println("I don't know");
-       return ver;
+       return probability;
    }
+
+    @Override
+    public double[] predictProba(double[] X) throws ModelNotFittedException, InconveninentShapeException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void saveToFile(String filename) throws IOException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
    
 }
 //   public double[] predictProba(double[] X) throws ModelNotFittedException, InconveninentShapeException {}

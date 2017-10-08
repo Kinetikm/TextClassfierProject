@@ -6,6 +6,7 @@
 package result.machinelearning.preprocessing;
 
 import Exeptions.InconveninentShapeException;
+import Exeptions.ModelNotFittedException;
 import java.io.IOException;
 
 /**
@@ -13,14 +14,14 @@ import java.io.IOException;
  * @author User
  */
 public interface MlModel {
-    //MlModel train(double[][] X, int[] y) throws InconveninentShapeException;
+    MlModel train(double[][] X, int[] y) throws InconveninentShapeException;
 
-   //int predict(double[] X) throws ModelNotFittedException, InconveninentShapeException;
+   int[] predict(double[] X) throws ModelNotFittedException, InconveninentShapeException;
 
-   //double[] predictProba(double[] X) throws ModelNotFittedException, InconveninentShapeException;
-
-
-   //void saveToFile(String filename) throws IOException;
+   double[] predictProba(double[] X) throws ModelNotFittedException, InconveninentShapeException;
 
 
+   void saveToFile(String filename) throws IOException;
+
+        
 }
