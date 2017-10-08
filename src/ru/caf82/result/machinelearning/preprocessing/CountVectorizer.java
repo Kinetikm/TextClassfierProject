@@ -5,11 +5,7 @@
  */
 package ru.caf82.result.machinelearning.preprocessing;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  *
@@ -57,6 +53,12 @@ private static List<String> defaultStopWordsList = new ArrayList<String>(
             })
     );
 
+    /**
+     * Заполняет матрицу
+     * @see CountVectorizer#matrix слова и возвращает список Мапов
+     * @param listOfTexts Список текстов
+     * @return Список Мапов
+     */
     @Override
     public List<Map<String, Integer>> fitAndTransform(List<String> listOfTexts) {
         List<Map<String, Integer>> listOfMaps = new ArrayList<>();
@@ -67,6 +69,11 @@ private static List<String> defaultStopWordsList = new ArrayList<String>(
         return listOfMaps;
     }
 
+    /**
+     * Заполняет матрицу
+     * @see CountVectorizer#matrix словами из списка текстов
+     * @param listOfTexts Список текстов
+     */
     @Override
     public void fit(List<String> listOfTexts) {
           for (String text : listOfTexts) {
@@ -75,6 +82,15 @@ private static List<String> defaultStopWordsList = new ArrayList<String>(
         }
     }
 
+    /**
+     * Метод извлекающий слова из переданного в метод текста.
+     * Не учитываются слова поля из
+     * @see CountVectorizer#defaultStopWordsList
+     * Используется класс
+     * @see PorterStemmer для стемминга
+     * @param text Текст, из которого извлекаются слова
+     * @return Список слов
+     */
     @Override
     public List<String> preprocess(String text) {
         PorterStemmer stemmer = new PorterStemmer();
@@ -89,6 +105,11 @@ private static List<String> defaultStopWordsList = new ArrayList<String>(
        return list;
     }
 
+    /**
+     * Возвращает список Мапов из слов, взятых из переданного списка текстов
+     * @param listOfTexts Список текстов
+     * @return Список Мапов
+     */
     @Override
     public List<Map<String, Integer>> transform(List<String> listOfTexts) {
         List<Map<String, Integer>> listOfMaps = new ArrayList<>();
@@ -98,7 +119,10 @@ private static List<String> defaultStopWordsList = new ArrayList<String>(
         }
         return listOfMaps;
     }
-    
+
+    /**
+     * Два конструктора
+     */
      public CountVectorizer(float minDf, float maxDf, String[] stopWords, boolean parralize) {
          this.minDf = minDf;
          this.maxDf = maxDf;
@@ -121,7 +145,12 @@ private static List<String> defaultStopWordsList = new ArrayList<String>(
        maxDf = 1;
        parralize = false;
    }
-   
+
+    /**
+     * Геттеры для полей
+     * @see CountVectorizer#minDf и
+     * @see CountVectorizer#maxDf
+     */
    public float getMinDf() {
        return minDf;
    }
@@ -129,35 +158,43 @@ private static List<String> defaultStopWordsList = new ArrayList<String>(
        return maxDf;
    }
 
+    /**
+     * Считает, сколько раз встретилось одно слово в переданном списке слов
+     * @param words Список слов, в котором счиатем слова
+     * @return Map, в котором ключ - это слово, значение - сколько раз встретилось данное слово
+     */
+
    private Map<String, Integer> countWords(List<String> words) {
        Map<String, Integer> map = new HashMap<String, Integer>();
-       int value;
+       int value = 1;
        for (String word : words) {
            if (map.containsKey(word)) {
-               value = map.get(word);
-                value++;             
+               value += map.get(word);
            }
-           
-           else {
-               value = 1;
-           }
+
            map.put(word, value);
        }
        return map;
    }
+
+    /**
+     * Делаем то же самое, что и в методе
+     * @see CountVectorizer#countWords(List), но еще и добавляем это в матрицу
+     * @see CountVectorizer#matrix
+     * @param words Список слов, в котором счиатем слова
+     * @return Map, в котором ключ - это слово, значение - сколько раз встретилось данное слово
+     */
    private Map<String, Integer> countWordsAndEditMatrix(List<String> words) {
     Map<String, Integer> map = countWords(words);
     int valueFromMatrix = 0;
     for (Map.Entry<String,Integer> pair : map.entrySet()) {
-        
-        if (matrix.containsKey(pair.getKey())) {
-            valueFromMatrix = matrix.get(pair.getKey());
-            
+        String key = pair.getKey();
+        if (matrix.containsKey(key)) {
+            valueFromMatrix = matrix.get(key);
         }
-        matrix.put(pair.getKey(), valueFromMatrix + pair.getValue());
+        matrix.put(key, valueFromMatrix + pair.getValue());
     }
     return map;
    }
-
 
 }
