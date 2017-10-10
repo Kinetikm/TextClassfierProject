@@ -9,11 +9,10 @@ public class StringProcessing {
 
         System.out.println("Длина: " + sb.length());
         System.out.println("Объем: " + sb.capacity());
-
+        
         sb.setCharAt(1, 'o');
 
         System.out.println("Было Котэ, стало: " + sb.toString());
-
         String str1 = "У кота ";
         String str2 = " лапы";
         int paws = 4;
