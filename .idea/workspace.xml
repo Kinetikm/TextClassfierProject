@@ -2,9 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1719bbbb-a41f-4da0-b50d-55555dc0a242" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/TextClassfierProject.iml" afterPath="$PROJECT_DIR$/.idea/TextClassfierProject.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/nbproject/private/private.xml" afterPath="$PROJECT_DIR$/nbproject/private/private.xml" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -85,53 +84,18 @@
               <item name="TextClassfierProject" type="b2602c69:ProjectViewProjectNode" />
               <item name="TextClassfierProject" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="TextClassfierProject" type="b2602c69:ProjectViewProjectNode" />
-              <item name="TextClassfierProject" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="TextClassfierProject" type="b2602c69:ProjectViewProjectNode" />
-              <item name="TextClassfierProject" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="ru" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="TextClassfierProject" type="b2602c69:ProjectViewProjectNode" />
-              <item name="TextClassfierProject" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="ru" type="462c0819:PsiDirectoryNode" />
-              <item name="caf82" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="TextClassfierProject" type="b2602c69:ProjectViewProjectNode" />
-              <item name="TextClassfierProject" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="ru" type="462c0819:PsiDirectoryNode" />
-              <item name="caf82" type="462c0819:PsiDirectoryNode" />
-              <item name="lectures" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="TextClassfierProject" type="b2602c69:ProjectViewProjectNode" />
-              <item name="TextClassfierProject" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="ru" type="462c0819:PsiDirectoryNode" />
-              <item name="caf82" type="462c0819:PsiDirectoryNode" />
-              <item name="lectures" type="462c0819:PsiDirectoryNode" />
-              <item name="lecture02" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
+      <pane id="AndroidView" />
       <pane id="Scratches" />
       <pane id="PackagesPane" />
-      <pane id="AndroidView" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$USER_HOME$/IdeaProjects/JavaRushTest" />
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -282,6 +246,38 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/src/ru/caf82/lectures/lecture02/OperatorsExample.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ru/caf82/lectures/lecture02/BoxingExample.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="546">
+          <caret line="26" column="0" lean-forward="false" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ru/caf82/lectures/lecture02/OperatorsExample.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ru/caf82/lectures/lecture02/BoxingExample.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="546">
+          <caret line="26" column="0" lean-forward="false" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/ru/caf82/lectures/lecture02/OperatorsExample.class">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -553,7 +549,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="273">
           <caret line="13" column="43" lean-forward="false" selection-start-line="13" selection-start-column="43" selection-end-line="13" selection-end-column="43" />
-          <folding />
         </state>
       </provider>
     </entry>
