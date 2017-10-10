@@ -81,27 +81,7 @@ private double[] weights;
            for(i=0;i<X.length;i++) sumdelta[i]=sumdelta[i]/X.length;
            for(i=0;i<X.length;i++)weights[i]=weights[i]-rate*sumdelta[i];
        }
-       return new MlModel() {
-           @Override
-           public MlModel train(double[][] X, int[] y) throws InconveninentShapeException {
-               throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-           }
-
-           @Override
-           public int[] predict(double[] X) throws ModelNotFittedException, InconveninentShapeException {
-               throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-           }
-
-           @Override
-           public double[] predictProba(double[] X) throws ModelNotFittedException, InconveninentShapeException {
-               throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-           }
-
-           @Override
-           public void saveToFile(String filename) throws IOException {
-               throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-           }
-       };
+       return this;
    }
    /**
     * Вспомогательный класс, который помогает вычислить сумму произведений координат вектора их весов
@@ -128,8 +108,14 @@ private double[] weights;
        if(ver>0.5){
            System.out.println("It is a dog");
            probability[0]=1;
-       }else if(ver<0.4)System.out.println("It is a cat");
-       else System.out.println("I don't know");
+       }else if(ver<0.4){
+           System.out.println("It is a cat");
+           probability[0]=0;
+       }
+       else {
+           System.out.println("I don't know");
+           probability[0]=-1;
+       }
        return probability;
    }
 
