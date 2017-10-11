@@ -39,7 +39,7 @@ public class MyOwnArrayList<E>  {
         return -1;
     }
 
-    public void add(int index, E element) throws IndexOutOfBoundsException {
+    public void add(int index, E element){
         if (index < 0 || index > size) {
             throw new IndexOutOfBoundsException();
         }
@@ -72,14 +72,14 @@ public class MyOwnArrayList<E>  {
         return size;
     }
 
-    public E get(int index) throws IndexOutOfBoundsException {
+    public E get(int index) {
         if (index < 0 || index >= size) {
             throw new IndexOutOfBoundsException();
         }
         return  (E) arrayOfData[index];
     }
 
-    public E set(int index, E element) throws IndexOutOfBoundsException {
+    public E set(int index, E element) {
         if (index < 0 || index >= size) {
             throw new IndexOutOfBoundsException();
         }
@@ -94,7 +94,7 @@ public class MyOwnArrayList<E>  {
         size = 0;
     }
 
-    public E remove(int index) throws IndexOutOfBoundsException {
+    public E remove(int index) {
         if (index < 0 || index >= size) {
             throw new IndexOutOfBoundsException();
         }
@@ -130,15 +130,4 @@ public class MyOwnArrayList<E>  {
         return stringBuilder.delete(stringBuilder.lastIndexOf(", "),stringBuilder.length()).append("]").toString();
     }
 
-    public static void main(String[] args) {
-//Тестим add
-        MyOwnArrayList<Integer> myOwnArrayList = new MyOwnArrayList<>();
-        myOwnArrayList.add(1);
-        myOwnArrayList.add(2);
-        myOwnArrayList.add(4);
-        System.out.println(myOwnArrayList);
-        myOwnArrayList.add(2,3);
-        System.out.println(myOwnArrayList);
-        System.out.println(myOwnArrayList.indexOf(1));
-    }
 }

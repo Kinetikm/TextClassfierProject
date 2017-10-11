@@ -2,10 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1719bbbb-a41f-4da0-b50d-55555dc0a242" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/ru/caf82/result/MyOwnArrayList.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/ru/caf82/result/Node.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/TextClassfierProject/ru/caf82/result/machinelearning/preprocessing/CountVectorizer.class" afterPath="$PROJECT_DIR$/out/production/TextClassfierProject/ru/caf82/result/machinelearning/preprocessing/CountVectorizer.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ru/caf82/result/MyOwnArrayList.java" afterPath="$PROJECT_DIR$/src/ru/caf82/result/MyOwnArrayList.java" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -16,60 +14,33 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
-      <file leaf-file-name="CountVectorizer.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/ru/caf82/result/machinelearning/preprocessing/CountVectorizer.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="724">
-              <caret line="200" column="0" lean-forward="false" selection-start-line="199" selection-start-column="0" selection-end-line="200" selection-end-column="0" />
-              <folding>
-                <element signature="e#572#580#0" expanded="true" />
-                <element signature="e#6233#6241#0" expanded="true" />
-                <element signature="e#8077#8094#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="MyOwnArrayList.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/ru/caf82/result/MyOwnArrayList.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="507">
-              <caret line="138" column="43" lean-forward="true" selection-start-line="138" selection-start-column="43" selection-end-line="138" selection-end-column="43" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#274#275#0" expanded="true" />
-                <element signature="e#332#333#0" expanded="true" />
-                <element signature="e#1998#1999#0" expanded="true" />
-                <element signature="e#2025#2026#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="LinkedList.java" pinned="false" current-in-tab="false">
         <entry file="jar://C:/JavaInstalledSoft/src.zip!/java/util/LinkedList.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="12603">
-              <caret line="976" column="21" lean-forward="true" selection-start-line="976" selection-start-column="21" selection-end-line="976" selection-end-column="21" />
+            <state relative-caret-position="19257">
+              <caret line="976" column="21" lean-forward="false" selection-start-line="976" selection-start-column="21" selection-end-line="976" selection-end-column="21" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Node.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Node.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/ru/caf82/result/Node.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="142">
-              <caret line="9" column="5" lean-forward="true" selection-start-line="9" selection-start-column="5" selection-end-line="9" selection-end-column="5" />
+            <state relative-caret-position="189">
+              <caret line="9" column="5" lean-forward="false" selection-start-line="9" selection-start-column="5" selection-end-line="9" selection-end-column="5" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MyOwnArrayList.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/ru/caf82/result/MyOwnArrayList.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-1363">
+              <caret line="41" column="41" lean-forward="false" selection-start-line="41" selection-start-column="41" selection-end-line="41" selection-end-column="41" />
               <folding>
-                <element signature="e#271#272#0" expanded="true" />
-                <element signature="e#331#332#0" expanded="true" />
-                <element signature="e#366#367#0" expanded="true" />
-                <element signature="e#434#435#0" expanded="true" />
-                <element signature="e#466#467#0" expanded="true" />
-                <element signature="e#524#525#0" expanded="true" />
-                <element signature="e#565#566#0" expanded="true" />
-                <element signature="e#646#647#0" expanded="true" />
+                <element signature="imports" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -78,8 +49,8 @@
       <file leaf-file-name="ArrayList.java" pinned="false" current-in-tab="false">
         <entry file="jar://C:/JavaInstalledSoft/src.zip!/java/util/ArrayList.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="7202">
-              <caret line="445" column="28" lean-forward="false" selection-start-line="445" selection-start-column="28" selection-end-line="445" selection-end-column="28" />
+            <state relative-caret-position="105">
+              <caret line="422" column="6" lean-forward="true" selection-start-line="422" selection-start-column="6" selection-end-line="422" selection-end-column="6" />
               <folding />
             </state>
           </provider>
@@ -98,7 +69,7 @@
       <file leaf-file-name="PorterStemmer.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/ru/caf82/result/machinelearning/preprocessing/PorterStemmer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="210">
+            <state relative-caret-position="2037">
               <caret line="102" column="0" lean-forward="false" selection-start-line="102" selection-start-column="0" selection-end-line="102" selection-end-column="0" />
               <folding />
             </state>
@@ -134,8 +105,8 @@
         <option value="$PROJECT_DIR$/src/ru/caf82/result/machinelearning/preprocessing/TfldfVectorizer.java" />
         <option value="$PROJECT_DIR$/src/ru/caf82/result/machinelearning/preprocessing/PorterStemmer.java" />
         <option value="$PROJECT_DIR$/src/ru/caf82/result/machinelearning/preprocessing/CountVectorizer.java" />
-        <option value="$PROJECT_DIR$/src/ru/caf82/result/MyOwnArrayList.java" />
         <option value="$PROJECT_DIR$/src/ru/caf82/result/Node.java" />
+        <option value="$PROJECT_DIR$/src/ru/caf82/result/MyOwnArrayList.java" />
       </list>
     </option>
   </component>
@@ -196,10 +167,10 @@
           <select />
         </subPane>
       </pane>
+      <pane id="AndroidView" />
       <pane id="Scope" />
       <pane id="Scratches" />
       <pane id="PackagesPane" />
-      <pane id="AndroidView" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -726,7 +697,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/ru/caf82/result/machinelearning/preprocessing/PorterStemmer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
+        <state relative-caret-position="2037">
           <caret line="102" column="0" lean-forward="false" selection-start-line="102" selection-start-column="0" selection-end-line="102" selection-end-column="0" />
           <folding />
         </state>
@@ -740,61 +711,44 @@
         </state>
       </provider>
     </entry>
-    <entry file="jar://C:/JavaInstalledSoft/src.zip!/java/util/ArrayList.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="7202">
-          <caret line="445" column="28" lean-forward="false" selection-start-line="445" selection-start-column="28" selection-end-line="445" selection-end-column="28" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/ru/caf82/result/machinelearning/preprocessing/CountVectorizer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="724">
+        <state relative-caret-position="4032">
           <caret line="200" column="0" lean-forward="false" selection-start-line="199" selection-start-column="0" selection-end-line="200" selection-end-column="0" />
-          <folding>
-            <element signature="e#572#580#0" expanded="true" />
-            <element signature="e#6233#6241#0" expanded="true" />
-            <element signature="e#8077#8094#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/ru/caf82/result/MyOwnArrayList.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="507">
-          <caret line="138" column="43" lean-forward="true" selection-start-line="138" selection-start-column="43" selection-end-line="138" selection-end-column="43" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#274#275#0" expanded="true" />
-            <element signature="e#332#333#0" expanded="true" />
-            <element signature="e#1998#1999#0" expanded="true" />
-            <element signature="e#2025#2026#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="jar://C:/JavaInstalledSoft/src.zip!/java/util/LinkedList.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="12603">
-          <caret line="976" column="21" lean-forward="true" selection-start-line="976" selection-start-column="21" selection-end-line="976" selection-end-column="21" />
+        <state relative-caret-position="19257">
+          <caret line="976" column="21" lean-forward="false" selection-start-line="976" selection-start-column="21" selection-end-line="976" selection-end-column="21" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/ru/caf82/result/Node.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="142">
-          <caret line="9" column="5" lean-forward="true" selection-start-line="9" selection-start-column="5" selection-end-line="9" selection-end-column="5" />
+        <state relative-caret-position="189">
+          <caret line="9" column="5" lean-forward="false" selection-start-line="9" selection-start-column="5" selection-end-line="9" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/JavaInstalledSoft/src.zip!/java/util/ArrayList.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="422" column="6" lean-forward="true" selection-start-line="422" selection-start-column="6" selection-end-line="422" selection-end-column="6" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ru/caf82/result/MyOwnArrayList.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1363">
+          <caret line="41" column="41" lean-forward="false" selection-start-line="41" selection-start-column="41" selection-end-line="41" selection-end-column="41" />
           <folding>
-            <element signature="e#271#272#0" expanded="true" />
-            <element signature="e#331#332#0" expanded="true" />
-            <element signature="e#366#367#0" expanded="true" />
-            <element signature="e#434#435#0" expanded="true" />
-            <element signature="e#466#467#0" expanded="true" />
-            <element signature="e#524#525#0" expanded="true" />
-            <element signature="e#565#566#0" expanded="true" />
-            <element signature="e#646#647#0" expanded="true" />
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
