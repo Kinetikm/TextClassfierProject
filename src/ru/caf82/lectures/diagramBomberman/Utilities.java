@@ -3,11 +3,16 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+package ru.caf82.lectures.diagramBomberman;
 
 /**
  *
  * @author Наташа
  */
-class AbstractModels {
-    
+public class Utilities {
+    public static <T> void fill(T[] array){
+        for (T array1 : array) {
+            System.out.println(array1);
+        }
+    }
 }
