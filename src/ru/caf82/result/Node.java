@@ -24,4 +24,12 @@ public class Node<E> {
     public void setNext(Node<E> next) { //Перенаправляем ссылку next на заданный элемент
         this.next = next;
     }
+
+    public String toString() {
+      E nextData = null;
+      if (next != null) {
+          nextData = next.data;
+      }
+      return "This: " + data + "\n" + "Next: " + nextData;
+    }
 }
