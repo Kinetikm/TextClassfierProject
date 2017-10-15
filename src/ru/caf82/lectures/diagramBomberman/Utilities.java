@@ -5,6 +5,8 @@
  */
 package ru.caf82.lectures.diagramBomberman;
 
+import java.util.ArrayList;
+import java.util.LinkedList;
 /**
  *
  * @author Наташа
@@ -14,5 +16,9 @@ public class Utilities {
         for (T array1 : array) {
             System.out.println(array1);
         }
+        ArrayList aaa = new ArrayList();
+        aaa.ensureCapacity(0);
+         huhi = new Entry();
+        huhi.poll(huhi);
     }
 }
