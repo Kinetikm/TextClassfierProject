@@ -11,7 +11,14 @@ import Exeptions.ModelNotFittedException;
 import java.io.Serializable;
 import java.util.Random;
 import Other.MathService;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.FileReader;
 import java.io.IOException;
+import java.io.ObjectOutputStream;
+import java.io.OutputStream;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -124,6 +131,38 @@ private double[] weights;
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
+    public void ReadFromFile(String filename) throws IOException {
+        File file =new File("C:\\users\\user\\desktop\\work\\DD.txt");
+        FileReader fir=new FileReader(file);
+        if(!file.exists())System.out.println("File no exist");
+        StringBuffer sb=new StringBuffer();
+        try{
+            BufferedReader br=new BufferedReader(fir);
+            String s;
+            while ((s = br.readLine()) != null) {
+                sb.append(s);
+                sb.append("\n");
+                }
+        }
+        catch(Exception e){
+            System.out.println(e);
+        }
+    }
+    public void saveMlModelToFile(MlModel model) throws FileNotFoundException, IOException{
+        FileOutputStream file=new FileOutputStream("C:\\users\\user\\desktop\\work\\Save.dat");      
+        ObjectOutputStream os=new ObjectOutputStream(file);
+        LogisticRegression lr=new LogisticRegression();
+        os.writeObject(lr);
+        os.close();
+    }
+
+    public double[] getWeights() {
+        return weights;
+    }
+
+    public void setWeights(double[] weights) {
+        this.weights = weights;
+    }
     @Override
     public void saveToFile(String filename) throws IOException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
@@ -131,7 +170,7 @@ private double[] weights;
    
 }
 //   public double[] predictProba(double[] X) throws ModelNotFittedException, InconveninentShapeException {}
-//   public void saveToFile(String filename) throws IOException {}
+
 //   public double[] getWeights() {}
 //   public float getAlpha() {}
 //   public void setAlpha(float alpha) {}
