@@ -9,7 +9,7 @@ public class ForAndForEachExample {
             System.out.println("i = " + i);
         }
         System.out.println();
-        int[] intList = {1,2,3,4};
+        int[] intList = {1, 2, 3, 4};
         for (int i : intList) {
             System.out.println("i = " + i);
         }
