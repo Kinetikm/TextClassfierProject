@@ -5,14 +5,35 @@
  */
 package Other;
 
+import java.util.Iterator;
+
 /**
  *
  * @author User
  */
-public class MyOwnLinkedList <E>{
+public class MyOwnLinkedList <E> implements Iterable{
     private int size;
     private Entry<E> head;
     private Entry<E> pred;
+
+    @Override
+    public Iterator iterator() {
+        return new Iterator(){
+            Entry<E> e=head;
+            @Override
+            public boolean hasNext() {
+                return(e!=null);
+            }
+
+            @Override
+            public Object next() {
+                Object ob=e.element;
+                e=e.next;
+                return ob;
+            }
+            
+        };
+    }
     private static class Entry<E>{
         Object element;
         Entry<E> next;
@@ -25,11 +46,14 @@ public class MyOwnLinkedList <E>{
         Entry<E> e=new Entry(ob);
         if(size==0){
             head=e;
+            //head.next=e;
+            //head.prev=e;
         }else{
             pred.next=e;
             e.prev=pred;
         }
         pred=e;
+        //head.prev=e;
         size++;
         
     }

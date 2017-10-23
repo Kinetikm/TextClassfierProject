@@ -6,11 +6,12 @@
 package Other;
 import java.util.ArrayList;
 import java.lang.Exception;
+import java.util.Iterator;
 /**
  *
  * @author User
  */
-public class MyOwnArrayList <E>{
+public class MyOwnArrayList <E> implements Iterable{
     private Object[] ElementData;
     MyOwnArrayList(){
         this(10);
@@ -75,5 +76,21 @@ public class MyOwnArrayList <E>{
     */
     public void showAll(){
         for(Object x:ElementData)System.out.println("Element: "+x);
+    }
+
+    @Override
+    public Iterator iterator() {
+        return new Iterator(){
+            int i=0;
+            @Override
+            public boolean hasNext() {
+                return(ElementData[i]!=null);
+            }
+
+            @Override
+            public Object next() {
+                return ElementData[i++];
+            }
+            };
     }
 }
