@@ -1,9 +1,10 @@
 package ru.caf82.result;
 
 import java.util.Collection;
+import java.util.Iterator;
 
 
-public class MyOwnLinkedList<E> {
+public class MyOwnLinkedList<E> implements Iterable<E> {
     private Node<E> lastNode; // последний элемент списка
     private Node<E> firstNode; // последний элемент списка
     private int size; // количество элементов списка
@@ -42,7 +43,7 @@ public class MyOwnLinkedList<E> {
        Node<E> node = firstNode;
        if (index != 0) {
            for (int i = 1; i <= index; i++) {
-               node = node.getNext();
+               node = node.next;
            }
        }
        return node;
@@ -59,7 +60,7 @@ public class MyOwnLinkedList<E> {
         }
         Node<E> node = new Node<>(element,null);
         if (index == 0) {
-            node.setNext(firstNode);
+            node.next = firstNode;
             firstNode = node;
             if (lastNode == null) {
                 lastNode = node;
@@ -67,9 +68,9 @@ public class MyOwnLinkedList<E> {
         }
         else {
             Node<E> prevNode = node(index - 1);
-            Node<E> nextNode = prevNode.getNext();
-                prevNode.setNext(node);
-                node.setNext(nextNode);
+            Node<E> nextNode = prevNode.next;
+            prevNode.next = node;
+            node.next = nextNode;
             if (nextNode == null) {
                 lastNode = node;
             }
@@ -97,8 +98,8 @@ public class MyOwnLinkedList<E> {
             throw new IndexOutOfBoundsException();
         }
         Node<E> node = node(index);
-        Node<E> nextNode = node.getNext();
-        node.setNext(null);
+        Node<E> nextNode = node.next;
+        node.next = null;
         if (index == 0) {
             firstNode = nextNode;
             if (nextNode == null) {
@@ -108,13 +109,13 @@ public class MyOwnLinkedList<E> {
         else
         {
             Node<E> prevNode = node(index - 1);
-            prevNode.setNext(nextNode);
+            prevNode.next = nextNode;
             if (nextNode == null) {
                 lastNode = prevNode;
             }
         }
         size--;
-        return node.getData();
+        return node.data;
     }
 
     /**
@@ -124,9 +125,9 @@ public class MyOwnLinkedList<E> {
      */
     public int indexOf(E element) {
         int count = -1;
-        for (Node<E> node = firstNode; node != null; node = node.getNext()) {
+        for (Node<E> node = firstNode; node != null; node = node.next) {
             count++;
-            if (node.getData().equals(element)) {
+            if (node.data.equals(element)) {
                 return count;
             }
         }
@@ -154,7 +155,7 @@ public class MyOwnLinkedList<E> {
      * @return Новый элемент
      */
     public E set(int index, E element) {
-        node(index).setData(element);
+        node(index).data = element;
         return element;
     }
 
@@ -166,7 +167,7 @@ public class MyOwnLinkedList<E> {
         if (isEmpty()) {
            return null;
         }
-        return firstNode.getData();
+        return firstNode.data;
     }
 
     /**
@@ -237,7 +238,7 @@ public class MyOwnLinkedList<E> {
         if (index < 0 || index >= size) {
             throw new IndexOutOfBoundsException();
         }
-        return node(index).getData();
+        return node(index).data;
     }
 
     /**
@@ -246,10 +247,44 @@ public class MyOwnLinkedList<E> {
     @Override
     public String toString() {
         StringBuilder stringBuilder = new StringBuilder("[");
-        for (Node<E> node = firstNode; node !=null; node = node.getNext()) {
-            stringBuilder.append(node.getData()).append(",").append(" ");
+        for (Node<E> node = firstNode; node !=null; node = node.next) {
+            stringBuilder.append(node.data).append(",").append(" ");
         }
         return stringBuilder.delete(stringBuilder.lastIndexOf(", "),stringBuilder.length()).append("]").toString();
     }
 
+    @Override
+    public Iterator<E> iterator() {
+        return new Iterator<E>() {
+            int index = 0;
+            @Override
+            public boolean hasNext() {
+                return index < size;
+            }
+
+            @Override
+            public E next() {
+               return  node(index++).data;
+            }
+        };
+
+
+    }
+    public class Node<E> {
+        private E data; //Содержимое элемента
+        private Node<E> next; // Ссылка на следующий элемент
+
+        public Node(E data, Node<E> next) {
+            this.data = data;
+            this.next = next;
+        }
+
+        public String toString() {
+            E nextData = null;
+            if (next != null) {
+                nextData = next.data;
+            }
+            return "This: " + data + "\n" + "Next: " + nextData;
+        }
+    }
 }

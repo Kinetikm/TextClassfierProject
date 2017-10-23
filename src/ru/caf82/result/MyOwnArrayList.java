@@ -1,9 +1,10 @@
 package ru.caf82.result;
 
 import java.util.Arrays;
+import java.util.Iterator;
 
-public class MyOwnArrayList<E>  {
-    private Object[] arrayOfData; //Статический массив элементов
+public class MyOwnArrayList<E> implements Iterable<E> {
+    private E[] arrayOfData; //Статический массив элементов
     private int size; // количество элементов в массиве
     private final static int DEFAULT_CAPACITY = 10; // Длина массив по умолчанию, при вызове конструктора без аргументов
 
@@ -11,7 +12,7 @@ public class MyOwnArrayList<E>  {
      * Конструктор без аргументов
      */
     public MyOwnArrayList() {
-        arrayOfData = new Object[DEFAULT_CAPACITY];
+        arrayOfData = (E[]) new Object[DEFAULT_CAPACITY];
     }
 
     /**
@@ -23,7 +24,7 @@ public class MyOwnArrayList<E>  {
         if (initialCapacity < 0) {
             throw new IllegalArgumentException();
         }
-        arrayOfData = new Object[initialCapacity];
+        arrayOfData = (E[]) new Object[initialCapacity];
     }
 
     /**
@@ -44,7 +45,7 @@ public class MyOwnArrayList<E>  {
      * @return true, если элемент содержится в массиве
      * иначе false
      */
-    public boolean contains(Object element) {
+    public boolean contains(E element) {
       return indexOf(element) != -1 ? true : false;  //Упрощенная конструкция if-else
     }
 
@@ -53,7 +54,7 @@ public class MyOwnArrayList<E>  {
      * @param element
      * @return Индекс элемента, если элемента нету в массиве, то return -1
      */
-    public int indexOf(Object element) {
+    public int indexOf(E element) {
 
         for (int i = 0; i < size; i++) {
             if (arrayOfData[i].equals(element)) {
@@ -72,9 +73,9 @@ public class MyOwnArrayList<E>  {
         if (index < 0 || index > size) {
             throw new IndexOutOfBoundsException();
         }
-        Object[] copyArrayBeforeIndex = Arrays.copyOfRange(arrayOfData,0,index);
-        Object[] copyArrayAfterIndex = Arrays.copyOfRange(arrayOfData,index,size);
-        Object[] newArrayOfData = new Object[++size];
+        E[] copyArrayBeforeIndex = Arrays.copyOfRange(arrayOfData,0,index);
+        E[] copyArrayAfterIndex = Arrays.copyOfRange(arrayOfData,index,size);
+        E[] newArrayOfData = (E[]) new Object[++size];
 
         for (int i = 0; i < copyArrayBeforeIndex.length; i++) {
             newArrayOfData[i] = copyArrayBeforeIndex[i];
@@ -115,7 +116,7 @@ public class MyOwnArrayList<E>  {
         if (index < 0 || index >= size) {
             throw new IndexOutOfBoundsException();
         }
-        return  (E) arrayOfData[index];
+        return  arrayOfData[index];
     }
 
     /**
@@ -133,13 +134,10 @@ public class MyOwnArrayList<E>  {
     }
 
     /**
-     * Полностью очищает массив: на всех ячейках массив null
+     * Полностью очищает массив
      */
     public void clear() {
-        for (int i = 0; i < size; i++) {
-            arrayOfData[i] = null;
-        }
-        size = 0;
+     arrayOfData = (E[]) new Object[DEFAULT_CAPACITY];
     }
 
     /**
@@ -152,10 +150,10 @@ public class MyOwnArrayList<E>  {
         if (index < 0 || index >= size) {
             throw new IndexOutOfBoundsException();
         }
-        E element = (E) arrayOfData[index];
-        Object[] copyArrayBeforeIndex = Arrays.copyOfRange(arrayOfData,0,index);
-        Object[] copyArrayAfterIndex = Arrays.copyOfRange(arrayOfData,index + 1,size);
-        Object[] newArrayOfData = new Object[--size];
+        E element =  arrayOfData[index];
+        E[] copyArrayBeforeIndex = Arrays.copyOfRange(arrayOfData,0,index);
+        E[] copyArrayAfterIndex = Arrays.copyOfRange(arrayOfData,index + 1,size);
+        E[] newArrayOfData = (E[]) new Object[--size];
 
         for (int i = 0; i < copyArrayBeforeIndex.length; i++) {
             newArrayOfData[i] = copyArrayBeforeIndex[i];
@@ -172,7 +170,7 @@ public class MyOwnArrayList<E>  {
      * @param element Его удаляем
      * @return true, если массив изменился, иначе false
      */
-    public boolean remove(Object element) {
+    public boolean remove(E element) {
         int index = indexOf(element);
         if (index != -1) {
             remove(index);
@@ -190,6 +188,25 @@ public class MyOwnArrayList<E>  {
             stringBuilder.append(arrayOfData[i]).append(",").append(" ");
         }
         return stringBuilder.delete(stringBuilder.lastIndexOf(", "),stringBuilder.length()).append("]").toString();
+    }
+
+    @Override
+    public Iterator<E> iterator()
+    {
+        return new Iterator<E>() {
+             int index = 0;
+
+            @Override
+            public boolean hasNext() {
+                return index < size;
+            }
+
+            @Override
+            public E next() {
+
+                return arrayOfData[index++];
+            }
+        };
     }
 
 }
