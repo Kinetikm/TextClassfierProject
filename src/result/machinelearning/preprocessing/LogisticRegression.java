@@ -5,12 +5,12 @@
  */
 package result.machinelearning.preprocessing;
 
-import Exeptions.EmptyArrayException;
-import Exeptions.InconveninentShapeException;
-import Exeptions.ModelNotFittedException;
+import exceptions.EmptyArrayException;
+import exceptions.InconveninentShapeException;
+import exceptions.ModelNotFittedException;
 import java.io.Serializable;
 import java.util.Random;
-import Other.MathService;
+import other.MathService;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -104,7 +104,7 @@ private double[] weights;
     * 
     * @param X
     * @return
-     * @throws Exeptions.ModelNotFittedException
+     * @throws exceptions.ModelNotFittedException
     * @throws InconveninentShapeException 
     */
 @Override

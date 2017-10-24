@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Other;
-import Exeptions.EmptyArrayException;
-import Exeptions.InconveninentShapeException;
+package other;
+import exceptions.EmptyArrayException;
+import exceptions.InconveninentShapeException;
 
 /**
  *

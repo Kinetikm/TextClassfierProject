@@ -3,12 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Other;
+package result.other;
 
 /**
  *
  * @author User
  */
-public class ReviewHibernateEntity {
+public class SwingTraining {
     
 }

@@ -3,12 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Other;
+package result.machinelearning.model;
 
 /**
  *
  * @author User
  */
-public class DAOImplementation {
+public class NormalKernel extends KNeighbourhood{
     
 }

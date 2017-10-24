@@ -3,10 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package result.machinelearning.Model;
+package result.machinelearning.model;
 
-import Exeptions.InconveninentShapeException;
-import Exeptions.ModelNotFittedException;
+import exceptions.InconveninentShapeException;
+import exceptions.ModelNotFittedException;
 import java.io.IOException;
 import result.machinelearning.preprocessing.MlModel;
 

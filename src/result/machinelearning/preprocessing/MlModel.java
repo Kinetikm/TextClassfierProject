@@ -5,8 +5,8 @@
  */
 package result.machinelearning.preprocessing;
 
-import Exeptions.InconveninentShapeException;
-import Exeptions.ModelNotFittedException;
+import exceptions.InconveninentShapeException;
+import exceptions.ModelNotFittedException;
 import java.io.IOException;
 
 /**
