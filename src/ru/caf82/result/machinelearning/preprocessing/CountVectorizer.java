@@ -11,12 +11,10 @@ import java.util.*;
  *
  * @author 1
  */
-public class CountVectorizer implements SequenceProcessor, Transformer{
-    private Map<String, Integer> matrix = new HashMap<>();
-private String[] stopWords;
-final float minDf;
-final float maxDf;
-final boolean parralize;
+public class CountVectorizer implements Transformer{
+private final Set<String> setWordsFromAllTexts = new HashSet<>();
+private final List<Boolean> textClasses = new ArrayList<>();
+private final List<String> listOfTexts = new ArrayList<>();
 private static List<String> defaultStopWordsList = new ArrayList<String>(
             Arrays.asList(new String[]{
                     "а","е","и","ж","м","о","на","не","ни","об","но","он","мне","мои","мож","она","они","оно",
@@ -53,34 +51,6 @@ private static List<String> defaultStopWordsList = new ArrayList<String>(
             })
     );
 
-    /**
-     * Заполняет матрицу
-     * @see CountVectorizer#matrix слова и возвращает список Мапов
-     * @param listOfTexts Список текстов
-     * @return Список Мапов
-     */
-    @Override
-    public List<Map<String, Integer>> fitAndTransform(List<String> listOfTexts) {
-        List<Map<String, Integer>> listOfMaps = new ArrayList<>();
-        for (String text : listOfTexts) {
-            List<String> list = preprocess(text);
-            listOfMaps.add(countWordsAndEditMatrix(list));
-        }
-        return listOfMaps;
-    }
-
-    /**
-     * Заполняет матрицу
-     * @see CountVectorizer#matrix словами из списка текстов
-     * @param listOfTexts Список текстов
-     */
-    @Override
-    public void fit(List<String> listOfTexts) {
-          for (String text : listOfTexts) {
-            List<String> list = preprocess(text);
-            countWordsAndEditMatrix(list);
-        }
-    }
 
     /**
      * Метод извлекающий слова из переданного в метод текста.
@@ -91,110 +61,56 @@ private static List<String> defaultStopWordsList = new ArrayList<String>(
      * @param text Текст, из которого извлекаются слова
      * @return Список слов
      */
-    @Override
-    public List<String> preprocess(String text) {
-        PorterStemmer stemmer = new PorterStemmer();
+    private static List<String> preprocess(String text) {
       text = text.toLowerCase().replaceAll("[^а-я -]","").replaceAll(" +-"," ").replaceAll("- +"," ");
-   
         String[] array = text.split(" +");
         for (int i = 0; i<array.length; i++) {
-            array[i] = stemmer.stem(array[i]);
+            array[i] = new PorterStemmer().stem(array[i]);
         }
-       List<String> list = new ArrayList<String>(Arrays.asList(array));
+       List<String> list = new ArrayList<>(Arrays.asList(array));
        list.removeAll(defaultStopWordsList);
        return list;
     }
 
-    /**
-     * Возвращает список Мапов из слов, взятых из переданного списка текстов
-     * @param listOfTexts Список текстов
-     * @return Список Мапов
-     */
-    @Override
-    public List<Map<String, Integer>> transform(List<String> listOfTexts) {
-        List<Map<String, Integer>> listOfMaps = new ArrayList<>();
+
+    public List<List<Integer>> transform() {
+        List<List<Integer>> listOfVectors = new ArrayList<>();
         for (String text : listOfTexts) {
-            List<String> list = preprocess(text);
-            listOfMaps.add(countWords(list));
+            listOfVectors.add(countWordsInText(preprocess(text)));
         }
-        return listOfMaps;
+        return listOfVectors;
     }
 
-    /**
-     * Два конструктора
-     */
-     public CountVectorizer(float minDf, float maxDf, String[] stopWords, boolean parralize) {
-         this.minDf = minDf;
-         this.maxDf = maxDf;
-         this.stopWords = stopWords;
-         this.parralize = parralize;
-     }
-   public CountVectorizer(float minDf, float maxDf) {
-       this.minDf = minDf;
-       this.maxDf = maxDf;
-       parralize = false;
-   }
-   public CountVectorizer(String[] stopWords) {
-       this.stopWords = stopWords;
-       minDf = 1;
-       maxDf = 1;
-       parralize = false;
-   }
-   public CountVectorizer() {
-       minDf = 1;
-       maxDf = 1;
-       parralize = false;
+    public CountVectorizer(Map<String,Boolean> mapOfTexts) {
+        listOfTexts.addAll(mapOfTexts.keySet());
+        addWordsInSetFromTexts(mapOfTexts.keySet());
+        textClasses.addAll(mapOfTexts.values());
+
+    }
+
+   private List<Integer> countWordsInText(List<String> words) {
+       List<Integer> vector = new ArrayList<>();
+      for (String word : setWordsFromAllTexts) {
+               vector.add(Collections.frequency(words,word));
+      }
+      return vector;
    }
 
-    /**
-     * Геттеры для полей
-     * @see CountVectorizer#minDf и
-     * @see CountVectorizer#maxDf
-     */
-   public float getMinDf() {
-       return minDf;
-   }
-   public float getMaxDf() {
-       return maxDf;
-   }
-
-    /**
-     * Считает, сколько раз встретилось одно слово в переданном списке слов
-     * @param words Список слов, в котором счиатем слова
-     * @return Map, в котором ключ - это слово, значение - сколько раз встретилось данное слово
-     */
-
-   private Map<String, Integer> countWords(List<String> words) {
-       Map<String, Integer> map = new HashMap<String, Integer>();
-       int value = 1;
-       for (String word : words) {
-           if (map.containsKey(word)) {
-               value += map.get(word);
-           }
-
-           map.put(word, value);
+   private void addWordsInSetFromTexts(Set<String> texts) {
+       for (String text : texts) {
+           setWordsFromAllTexts.addAll(preprocess(text));
        }
-       return map;
    }
 
-    /**
-     * Делаем то же самое, что и в методе
-     * @see CountVectorizer#countWords(List), но еще и добавляем это в матрицу
-     * @see CountVectorizer#matrix
-     * @param words Список слов, в котором счиатем слова
-     * @return Map, в котором ключ - это слово, значение - сколько раз встретилось данное слово
-     */
-   private Map<String, Integer> countWordsAndEditMatrix(List<String> words) {
-    Map<String, Integer> map = countWords(words);
-    int valueFromMatrix = 0;
-    for (Map.Entry<String,Integer> pair : map.entrySet()) {
-        String key = pair.getKey();
-        if (matrix.containsKey(key)) {
-            valueFromMatrix = matrix.get(key);
-        }
-        matrix.put(key, valueFromMatrix + pair.getValue());
+    public List<Boolean> getTextClasses() {
+        return textClasses;
     }
-    return map;
-   }
+
+    public List<List<Integer>> appendTextsAndTransform(Map<String,Boolean> mapOfTexts) {
+        listOfTexts.addAll(mapOfTexts.keySet());
+        addWordsInSetFromTexts(mapOfTexts.keySet());
+        textClasses.addAll(mapOfTexts.values());
+        return transform();
+    }
 
 }
