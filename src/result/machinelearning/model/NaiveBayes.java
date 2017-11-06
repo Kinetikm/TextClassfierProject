@@ -8,6 +8,7 @@ package result.machinelearning.model;
 import exceptions.InconveninentShapeException;
 import exceptions.ModelNotFittedException;
 import java.io.IOException;
+import java.util.List;
 import result.machinelearning.preprocessing.MlModel;
 
 /**
@@ -98,6 +99,11 @@ public class NaiveBayes implements MlModel {
        return fitted;
        // просто чтобы не ругался
    }
+
+    @Override
+    public MlModel train(List<List<Integer>> X, List<Boolean> y) throws InconveninentShapeException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }
 
    

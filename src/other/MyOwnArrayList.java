@@ -117,7 +117,8 @@ public class MyOwnArrayList<E> implements Iterable {
 
             @Override
             public boolean hasNext() {
-                return (ElementData[i] != null);
+                if(i<ElementData.length)return (ElementData[i] != null);
+                return false;
             }
 
             @Override

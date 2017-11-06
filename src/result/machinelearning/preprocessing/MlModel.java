@@ -8,18 +8,18 @@ package result.machinelearning.preprocessing;
 import exceptions.InconveninentShapeException;
 import exceptions.ModelNotFittedException;
 import java.io.IOException;
+import java.util.List;
 
 /**
  *
  * @author User
  */
 public interface MlModel {
-    MlModel train(double[][] X, int[] y) throws InconveninentShapeException;
+    MlModel train(List<List<Integer>> X, List<Boolean> y) throws InconveninentShapeException;
 
    int[] predict(double[] X) throws ModelNotFittedException, InconveninentShapeException;
 
    double[] predictProba(double[] X) throws ModelNotFittedException, InconveninentShapeException;
-
 
    void saveToFile(String filename) throws IOException;
 
