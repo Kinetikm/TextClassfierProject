@@ -1,4 +1,4 @@
-package ru.caf82.lectures.lecturedb.hibernateutil;
+package ru.caf82.lectures.lecture09.hibernateutil;
 
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
