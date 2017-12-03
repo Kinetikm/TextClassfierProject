@@ -1,0 +1,3 @@
+class SuperClassForC {
+    protected String getHint;
+}

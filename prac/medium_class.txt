@@ -1,0 +1,8 @@
+abstract class SuperClassForB {
+    String getHint() {
+        throw new UnsupportedOperationException();
+    }
+    protected Integer[] getSecret(B b) {
+        throw new UnsupportedOperationException();
+    }
+}
