@@ -6,19 +6,23 @@ package ru.caf82.lectures.lecture12;
 public class InterruptExample {
     public static void main(String[] args) {
         Thread t1 = new Thread(() -> {
-           for (int i = 0; i < 100; ++i) {
+           int i = 0;
+            while (!Thread.currentThread().isInterrupted() && i < 100) {
                System.out.println("i=" + i);
+               ++i;
                try {
                    Thread.sleep(1);
                } catch (InterruptedException e) {
                    e.printStackTrace();
+//                   return;
+                   Thread.currentThread().interrupt();
                }
            }
         });
 
         t1.start();
         try {
-            Thread.sleep(5);
+            Thread.sleep(25);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
