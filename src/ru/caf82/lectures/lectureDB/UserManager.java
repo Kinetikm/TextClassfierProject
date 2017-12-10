@@ -94,7 +94,4 @@ public class UserManager {
         return result;
     }
 
-    public static void main(String[] args) {
-        System.out.println(userExist("maks08197"));
-    }
 }
