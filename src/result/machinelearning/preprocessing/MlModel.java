@@ -17,7 +17,7 @@ import java.util.List;
 public interface MlModel {
     MlModel train(List<List<Integer>> X, List<Boolean> y) throws InconveninentShapeException;
 
-   int[] predict(double[] X) throws ModelNotFittedException, InconveninentShapeException;
+   int[] predict(List<List<Integer>> X) throws ModelNotFittedException, InconveninentShapeException;
 
    double[] predictProba(double[] X) throws ModelNotFittedException, InconveninentShapeException;
 

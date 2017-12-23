@@ -5,9 +5,9 @@
  */
 package result.workFiles;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileNotFoundException;
+import java.io.*;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 
@@ -15,55 +15,46 @@ import java.util.Map;
  *
  * @author User
  */
-public class FileReading{
-    Map<String,Boolean>map;
+public class Reading{
+    String path = "C:/users/user/desktop/texts/";
     public Map readFile(int ZeroAmount, int OneAmount){
+
+        Map<String,Boolean> map = new LinkedHashMap<>();
+
         for(int i=1;i<ZeroAmount;i++){
-            File file =new File("Text0_"+i+".txt");
+            File file =new File(path + "text0_"+i+".txt");
             java.io.FileReader fir = null;
-            try {
-                fir = new java.io.FileReader(file);
-            } catch (FileNotFoundException ex) {
-                System.out.println(ex);
-            }
-        if(!file.exists())System.out.println("File no exist");
-        StringBuffer sb=new StringBuffer();
-        try{
-            BufferedReader br=new BufferedReader(fir);
-            String s;
-            while ((s = br.readLine()) != null) {
-                sb.append(s);
-                sb.append("\n");
+            StringBuffer sb = new StringBuffer();
+            try (BufferedReader br = new BufferedReader(new FileReader(file))) {
+                String s;
+                while ((s = br.readLine()) != null) {
+                    sb.append(s);
+                    sb.append("\n");
                 }
-        }
-        catch(Exception e){
-            System.out.println(e);
-        }
-        map.put(sb.toString(), false);
+                map.put(sb.toString(), false);
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
         for(int i=1;i<OneAmount;i++){
-            File file =new File("Text1_"+i+".txt");
+            File file =new File(path + "text1_"+i+".txt");
             java.io.FileReader fir = null;
-            try {
-                fir = new java.io.FileReader(file);
-            } catch (FileNotFoundException ex) {
-                System.out.println(ex);
-            }
-        if(!file.exists())System.out.println("File no exist");
-        StringBuffer sb=new StringBuffer();
-        try{
-            BufferedReader br=new BufferedReader(fir);
-            String s;
-            while ((s = br.readLine()) != null) {
-                sb.append(s);
-                sb.append("\n");
+            StringBuffer sb = new StringBuffer();
+            try (BufferedReader br = new BufferedReader(new FileReader(file))) {
+                String s;
+                while ((s = br.readLine()) != null) {
+                    sb.append(s);
+                    sb.append("\n");
                 }
+                map.put(sb.toString(), true);
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
-        catch(Exception e){
-            System.out.println(e);
-        }
-        map.put(sb.toString(), true);
-    }
         return map;
     }
 }

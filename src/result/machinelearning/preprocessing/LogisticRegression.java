@@ -7,20 +7,13 @@ package result.machinelearning.preprocessing;
 
 import exceptions.EmptyArrayException;
 import exceptions.InconveninentShapeException;
-import exceptions.ModelNotFittedException;
-import java.io.Serializable;
 import other.MathService;
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.FileReader;
-import java.io.IOException;
-import java.io.ObjectOutputStream;
-import java.util.ArrayList;
+
+import java.io.*;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import other.NewClass;
 
 /**
  *
@@ -28,31 +21,25 @@ import java.util.logging.Logger;
  */
 public class LogisticRegression implements MlModel, Serializable {
 
+    private static final long serialVersionUID = 5865555265285679275L;
     private final int ITERATES = 1000;
     private final double rate = 0.001;
     private double[] weights = null;
 
     /**
-     * Инициализация массива векторв - нужно добавить первый столбец с одними
-     * единицами
-     *
-     * @param X - координаты векторов
+     * Adding first column with 1
+     * @param X
      * @return
      */
     private List<List<Integer>> init(List<List<Integer>> X) {
-        int i, j;
-        List<List<Integer>> xx = new ArrayList<List<Integer>>();
-        for (i = 0; i < X.size(); i++) {
-            xx.get(i).add(1);
-            for (j = 0; j < X.get(1).size(); j++) {
-                xx.get(i).add(X.get(i).get(j));
-            }
+        for (int i = 0; i < X.size(); i++) {
+            X.get(i).add(0, 1);
         }
-        return xx;
+        return X;
     }
 
     /**
-     * Список Integer в массив double
+     * Change list of Integer to double array
      *
      * @param list
      * @return
@@ -66,7 +53,7 @@ public class LogisticRegression implements MlModel, Serializable {
     }
 
     /**
-     * Список boolean в массив double
+     * Change list of boolean to double array
      *
      * @param list
      * @return
@@ -82,12 +69,11 @@ public class LogisticRegression implements MlModel, Serializable {
         }
         return intArray;
     }
-
     /**
-     * Тренировка весов С каждой итерацией вероятность будет точнее и точнее
+     * Train
      *
-     * @param X полученные вектора из CountVectorizer
-     * @param y возможные варианты (1 или 0)
+     * @param X ïîëó÷åííûå âåêòîðà èç CountVectorizer
+     * @param y âîçìîæíûå âàðèàíòû (1 èëè 0)
      * @return
      * @throws InconveninentShapeException
      */
@@ -95,48 +81,68 @@ public class LogisticRegression implements MlModel, Serializable {
     public MlModel train(List<List<Integer>> X, List<Boolean> y) throws InconveninentShapeException {
 
         double pr = 0;
-        double[] sumdelta; //сумма дельт в каждом столбце
-        int i, j;
+        double[] sumdelta;
+        int i, j, k;
+//        try {
+//            weights=readFromFile();
+//        } catch (IOException ex) {
+//            Logger.getLogger(LogisticRegression.class.getName()).log(Level.SEVERE, null, ex);
+//        } catch (ClassNotFoundException ex) {
+//            Logger.getLogger(LogisticRegression.class.getName()).log(Level.SEVERE, null, ex);
+//        }
         weights = new double[X.get(1).size() + 1];
         X = init(X);
         double delta[];
-        sumdelta = new double[X.size()];
+        sumdelta = new double[X.get(1).size()];
         for (int u = 0; u < ITERATES; u++) {
-            delta = new double[X.size()];
+            delta = new double[X.get(1).size()];
             for (i = 0; i < X.size(); i++) {
                 try {
                     pr = MathService.sigmoid(MathService.doProduct(toIntArray(X.get(i)), weights));
                 } catch (EmptyArrayException ex) {
                     Logger.getLogger(LogisticRegression.class.getName()).log(Level.SEVERE, null, ex);
                 }
-                for (j = 0; j < X.get(i).size(); j++) {
-                    delta[i] = pr - toBoolArray(y)[i] * X.get(i).get(j);
+                for (j = 0; j < X.get(1).size(); j++) {
+                    delta[j] = (pr - toBoolArray(y)[i]) * X.get(i).get(j);
+
                 }
-                for (i = 0; i < X.size(); i++) {
-                    sumdelta[i] = sumdelta[i] + delta[i];
+
+                for (k = 0; k < X.get(1).size(); k++) {
+                    sumdelta[k] = sumdelta[k] + delta[k];
+
                 }
+
             }
-            for (i = 0; i < X.size(); i++) {
+            for (i = 0; i < X.get(1).size(); i++) {
                 sumdelta[i] = sumdelta[i] / X.size();
+
             }
-            for (i = 0; i < X.size(); i++) {
+            for (i = 0; i < X.get(1).size(); i++) {
                 weights[i] = weights[i] - rate * sumdelta[i];
+
             }
+
+        }
+
+        try {
+            saveMlModelToFile();
+        } catch (IOException ex) {
+            Logger.getLogger(LogisticRegression.class.getName()).log(Level.SEVERE, null, ex);
         }
         return this;
     }
 
     /**
-     * Вспомогательный класс, который помогает вычислить сумму произведений
-     * координат вектора их весов
+     * Âñïîìîãàòåëüíûé êëàññ, êîòîðûé ïîìîãàåò âû÷èñëèòü ñóììó ïðîèçâåäåíèé
+     * êîîðäèíàò âåêòîðà èõ âåñîâ
      *
-     * @param X вектор
+     * @param X âåêòîð
      * @return
      */
-    private double help(double[] X) {
+    private double help(List<Integer> X) {
         double result = 0;
-        for (int i = 0; i < X.length; i++) {
-            result = result + X[i] * weights[i];
+        for (int i = 0; i < X.size(); i++) {
+            result = result + X.get(i) * weights[i];
         }
         return result;
     }
@@ -145,51 +151,51 @@ public class LogisticRegression implements MlModel, Serializable {
      *
      * @param X
      * @return
-     * @throws exceptions.ModelNotFittedException
      * @throws InconveninentShapeException
      */
     @Override
-    public int[] predict(double[] X) throws ModelNotFittedException, InconveninentShapeException {
+    public int[] predict(List<List<Integer>> X) throws InconveninentShapeException {
+        //weights=new NewClass().nc();
         double ver;
-        int[] probability = new int[X.length];
-        ver = Math.exp(help(X)) / (1 + Math.exp(help(X)));
-        if (ver > 0.5) {
-            System.out.println("It is a dog");
-            probability[0] = 1;
-        } else if (ver < 0.4) {
-            System.out.println("It is a cat");
-            probability[0] = 0;
-        } else {
-            System.out.println("I don't know");
-            probability[0] = -1;
+        int[] probability = new int[X.size()];
+        for (int i = 0; i < X.size(); i++) {
+            ver = Math.exp(help(X.get(i))) / (1 + Math.exp(help(X.get(i))));
+            if (ver > 0.44) {
+                System.out.println("Text № " + i + "  is about dog " + ver);
+                probability[i] = 1;
+            } else if (ver < 0.44) {
+                System.out.println("Text № " + i + "  is about cat " + ver);
+                probability[i] = 0;
+            } else {
+                System.out.println("I don't know");
+                probability[i] = -1;
+            }
         }
         return probability;
     }
 
     @Override
-    public double[] predictProba(double[] X) throws ModelNotFittedException, InconveninentShapeException {
+    public double[] predictProba(double[] X) throws InconveninentShapeException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
     /**
-     * Сериализация
+     * Ñåðèàëèçàöèÿ
+     *
      * @param model
      * @throws FileNotFoundException
-     * @throws IOException 
+     * @throws IOException
      */
-    public void saveMlModelToFile(MlModel model) throws FileNotFoundException, IOException {
-        FileOutputStream file = new FileOutputStream("C:\\users\\user\\desktop\\work\\Save.dat");
+    public void saveMlModelToFile() throws FileNotFoundException, IOException {
+        FileOutputStream file = new FileOutputStream("C:\\users\\user\\desktop\\work\\Saves.dat");
         ObjectOutputStream os = new ObjectOutputStream(file);
         LogisticRegression lr = new LogisticRegression();
-        os.writeObject(lr);
+        os.writeObject(weights);
         os.close();
     }
 
     public double[] getWeights() {
         return weights;
-    }
-
-    public void setWeights(double[] weights) {
-        this.weights = weights;
     }
 
     @Override
