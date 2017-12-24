@@ -1,74 +1,54 @@
 package ru.caf82.result.workwithfiles;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
+import java.io.*;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 public class Reading {
-    Map<String,Boolean> map;
-    public Map<String, Boolean> readFile(int ZeroAmount, int OneAmount){
-        ExecutorService executor = Executors.newCachedThreadPool();
-        for(int i = 1; i < ZeroAmount; i++){
+    Map<String,Boolean> map = new HashMap<>();
+    private synchronized void readFile(String fileName, boolean classFlag){
+
+                File file = new File(fileName);
+
+                try (BufferedReader bufferedReader = new BufferedReader(new FileReader(file)))
+                {
+                    StringBuffer stringBuffer = new StringBuffer();
+                    String s;
+                    while ((s = bufferedReader.readLine()) != null) {
+                        stringBuffer.append(s);
+                        stringBuffer.append("\n");
+                    }
+
+                    map.put(stringBuffer.toString(), classFlag);
+                } catch (FileNotFoundException ex) {
+                    System.out.println("File doesn't exist");
+                    return;
+                } catch (IOException e) {
+                    System.out.println(e);
+                }
+            }
+
+
+    public Map<String, Boolean> getMap(int zeroAmount, int oneAmount) {
+        ExecutorService executorService = Executors.newCachedThreadPool();
+
+        for (int i = 1; i <= zeroAmount; i++) {
             int finalI = i;
-            executor.submit(new Runnable() {
-              @Override
-              public void run() {
-                  File file =new File("Text0_" + finalI + ".txt");
-                  FileReader fir = null;
-                  try {
-                      fir = new FileReader(file);
-                  } catch (FileNotFoundException ex) {
-                      System.out.println(ex);
-                  }
-                  if(!file.exists())
-                      System.out.println("File doesn't exist");
-                  StringBuffer sb=new StringBuffer();
-                  try{
-                      BufferedReader br = new BufferedReader(fir);
-                      String s;
-                      while ((s = br.readLine()) != null) {
-                          sb.append(s);
-                          sb.append("\n");
-                      }
-                  }
-                  catch(Exception e){
-                      System.out.println(e);
-                  }
-                  map.put(sb.toString(), false);
-              }
-          });
-        }
-        for(int i = 1; i < OneAmount; i++){
-            int finalI = i;
-            executor.submit(new Runnable() {
+            executorService.submit(new Runnable() {
                 @Override
                 public void run() {
-                    File file = new File("Text1_" + finalI + ".txt");
-                    FileReader fir = null;
-                    try {
-                        fir = new FileReader(file);
-                    } catch (FileNotFoundException ex) {
-                        System.out.println(ex);
-                    }
-                    if(!file.exists())
-                        System.out.println("File doesn't exist");
-                    StringBuffer sb=new StringBuffer();
-                    try{
-                        BufferedReader br=new BufferedReader(fir);
-                        String s;
-                        while ((s = br.readLine()) != null) {
-                            sb.append(s);
-                            sb.append("\n");
-                        }
-                    }
-                    catch(Exception e){
-                        System.out.println(e);
-                    }
-                    map.put(sb.toString(), true);
+                    readFile("Text1_" + finalI + ".txt", false);
+                }
+            });
+        }
+        for (int i = 1; i <= zeroAmount; i++) {
+            int finalI = i;
+            executorService.submit(new Runnable() {
+                @Override
+                public void run() {
+                    readFile("Text2_" + finalI + ".txt", true);
                 }
             });
         }
