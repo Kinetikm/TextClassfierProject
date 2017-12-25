@@ -2,12 +2,13 @@ package ru.caf82.result.workwithfiles;
 
 import java.io.*;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 public class Reading {
-    Map<String,Boolean> map = new HashMap<>();
+    Map<String,Boolean> map = new LinkedHashMap<>();
     private synchronized void readFile(String fileName, boolean classFlag){
 
                 File file = new File(fileName);
@@ -43,7 +44,7 @@ public class Reading {
                 }
             });
         }
-        for (int i = 1; i <= zeroAmount; i++) {
+        for (int i = 1; i <= oneAmount; i++) {
             int finalI = i;
             executorService.submit(new Runnable() {
                 @Override
@@ -51,6 +52,15 @@ public class Reading {
                     readFile("Text2_" + finalI + ".txt", true);
                 }
             });
+        }
+        executorService.shutdown();
+
+        while (!executorService.isTerminated()) {
+            try {
+                Thread.sleep(5);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
         }
         return map;
     }
